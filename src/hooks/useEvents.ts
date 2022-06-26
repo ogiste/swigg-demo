@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 import { useQueryClient } from "react-query";
-import useCommentsContract, { EventType } from "./comments/useCommentsContract";
+import useCommentsContract, {EventType, UseCommentsContractResults} from "./comments/useCommentsContract";
 
 interface UseEventsQuery {
     topic: string;
+    contract: UseCommentsContractResults;
 }
 
 // Listen to events and refresh data
-const useEvents = ({ topic }: UseEventsQuery) => {
+const useEvents = ({ topic, contract }: UseEventsQuery) => {
+    console.count('useEvents({topic})');
+    // Because we have the QueryClient provider in the App component we can use the various hooks in it such as useQueryClient
     const queryClient = useQueryClient();
-    const commentsContract = useCommentsContract();
     useEffect(() => {
         const handler = (comment) => {
             if (comment.topic !== topic) {
@@ -19,17 +21,16 @@ const useEvents = ({ topic }: UseEventsQuery) => {
             // This will cause the useComments hook to re-render the Comments
             // component with fresh data.
             queryClient.invalidateQueries([
-                "comments",
-                { topic: comment.topic, chainId: commentsContract.chainId }
+                "comments"
             ]);
         };
 
-        commentsContract.contract.on(EventType.CommentAdded, handler);
+        contract.contract.on(EventType.CommentAdded, handler);
 
         return () => {
-            commentsContract.contract.off(EventType.CommentAdded, handler);
+            contract.contract.off(EventType.CommentAdded, handler);
         };
-    }, [queryClient, commentsContract.chainId, topic]);
+    }, [queryClient, topic, contract.contract, contract.chainId]);
 };
 
 export default useEvents;

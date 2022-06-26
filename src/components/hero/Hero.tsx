@@ -1,4 +1,4 @@
-import {Button, Flex, Stack, Text, useBreakpointValue, VStack,} from '@chakra-ui/react';
+import {Button, Flex, Link, Stack, Text, useBreakpointValue, VStack,} from '@chakra-ui/react';
 import styles from './Hero.module.css';
 
 export default function Hero() {
@@ -21,23 +21,17 @@ export default function Hero() {
             fontWeight={700}
             lineHeight={1.2}
             fontSize={useBreakpointValue({ base: '3xl', md: '4xl' })}>
-            Lorem ipsum dolor sit amet consectetur adipiscing elit sed do
-            eiusmod tempor
+            Mint an NFT in 3 easy steps.
           </Text>
           <Stack direction={'row'}>
             <Button
+              as={Link}
               bg={'blue.400'}
               rounded={'full'}
               color={'white'}
+              href="/mint"
               _hover={{ bg: 'blue.500' }}>
-              Show me more
-            </Button>
-            <Button
-              bg={'whiteAlpha.300'}
-              rounded={'full'}
-              color={'white'}
-              _hover={{ bg: 'whiteAlpha.500' }}>
-              Show me more
+              Mint an NFT
             </Button>
           </Stack>
         </Stack>

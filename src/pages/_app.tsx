@@ -1,7 +1,6 @@
-import type { AppProps } from "next/app";
-import "@fontsource/poppins";
 
-function MyApp({ Component, pageProps }: AppProps) {
+// @ts-ignore
+function MyApp({ Component, pageProps }) {
   console.log(pageProps);
   return <Component {...pageProps} />;
 }

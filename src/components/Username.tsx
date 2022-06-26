@@ -10,6 +10,7 @@ interface UsernameProps extends TextProps {
 
   const Username: React.FunctionComponent<UsernameProps> = ({address,...otherProps}) => {
     const { data, isError, isLoading }  = useEnsName({address});
+    // const data = 'test ens';
 
       return (<Text display="inline" textTransform={data ? "none": "uppercase"} {...otherProps}>
           {data || truncateMiddle(address || "", 5, 4, "...")}

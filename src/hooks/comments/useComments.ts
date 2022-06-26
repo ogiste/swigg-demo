@@ -6,11 +6,12 @@ interface UseCommentsQuery {
     contract: UseCommentsContractResults;
 }
 
-const fetchComments = ({topic, contract}: UseCommentsQuery) => {
-    return useQuery(["comments", topic], () => {
+const useComments = ({topic, contract}: UseCommentsQuery) => {
+    console.count('useComments');
+    return useQuery(["comments"], () => {
         console.log('fetching contract comments')
         return contract.getComments(topic);
-    }, {retry: false});
+    });
 }
 
-export default fetchComments;
+export default useComments;

@@ -1,34 +1,31 @@
 import React, {useState} from "react";
 import Navbar from '../navbar/Narbar'
 import Footer from '../footer/Footer'
-import {ButtonProps, ChakraProvider} from "@chakra-ui/react";
-import theme from "../../theme";
-import {QueryClientProvider} from "react-query";
-import { WagmiConfig, Client} from "wagmi";
+import "@fontsource/poppins";
+import {Toaster} from "react-hot-toast";
 
 interface MainLayoutProps {
   [key: string]: any;
 }
-const MainLayout: React.FunctionComponent<MainLayoutProps> = ({ children, wagmiClient, queryClient  }) => {
-  const [user, setUser] = useState();
 
-  const handleUserInfoChange = (userData) => {
-    setUser(userData);
-  }
+const MainLayout: React.FunctionComponent<MainLayoutProps> = ({children}) => {
+  // const [user, setUser] = useState();
 
+  // @ts-ignore
+  // const handleUserInfoChange = (userData) => {
+  //   setUser(userData);
+  // }
+
+  // @ts-ignore
   return (
     <>
-      <WagmiConfig client={wagmiClient}>
-        <ChakraProvider theme={theme}>
-          <QueryClientProvider client={queryClient}>
-            <Navbar user={user}/>
-            {children}
-            <Footer/>
-          </QueryClientProvider>
-        </ChakraProvider>
-      </WagmiConfig>
+      <Navbar/>
+      {children}
+      <Toaster position="bottom-right"/>
+      <Footer/>
     </>
   )
+
 }
 
 export default MainLayout;

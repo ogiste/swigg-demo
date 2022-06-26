@@ -10,16 +10,29 @@ import {QueryCache, QueryClient} from "react-query";
 
 const localTestNetProvider = "http://localhost:8545";
 // Provider that will be used when no wallet is connected
-const polygonTestNetProvider = "https://matic-testnet-archive-rpc.bwarelabs.com";
-// const polygonTestNetProvider = "https://matic-mumbai.chainstacklabs.com";
+const polygonTestNetProvider = "https://matic-mumbai.chainstacklabs.com";
+const polygonTestNetProvider2 = "https://rpc-mumbai.maticvigil.com";
+const polygonTestNetProvider3 = "https://matic-testnet-archive-rpc.bwarelabs.com";
 
-const {chains, provider} = configureChains(
-  [chain.polygon, chain.polygonMumbai],
+export const {chains, provider} = configureChains(
+  [chain.polygonMumbai, chain.polygon],
   [
     jsonRpcProvider({
       rpc: (chain) => {
-        console.log(chain);
+        console.count('chain');
         return ({http: polygonTestNetProvider});
+      },
+    }),
+    jsonRpcProvider({
+      rpc: (chain) => {
+        console.count('chain');
+        return ({http: polygonTestNetProvider2});
+      },
+    }),
+    jsonRpcProvider({
+      rpc: (chain) => {
+        console.count('chain');
+        return ({http: polygonTestNetProvider3});
       },
     }),
   ],
@@ -58,7 +71,8 @@ export const queryClient = new QueryClient({
     },
   },
   queryCache: new QueryCache({
-    onError: () => {
+    onError: (err) => {
+      console.log(err);
       toast.error(
         "Network Error: Ensure Metamask is connected to the same network that your contract is deployed to."
       );

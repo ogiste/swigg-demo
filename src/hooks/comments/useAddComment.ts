@@ -6,8 +6,7 @@ interface UseAddCommentPayload {
     message: string;
 }
 
-const useAddComment = () => {
-    const contractFascade = useCommentsContract();
+const useAddComment = ({contract: contractFascade}) => {
     return useMutation(async({topic, message}: UseAddCommentPayload) => {
         await contractFascade.addComment(topic, message);
     });

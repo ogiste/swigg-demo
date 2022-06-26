@@ -28,4 +28,10 @@ module.exports = {
             accounts: [process.env.MUMBAI_KEY],
         },
     },
+    paths: {
+        sources: "./src/contracts",
+        tests: "./test",
+        cache: "./cache",
+        artifacts: "./src/artifacts"
+    },
 };

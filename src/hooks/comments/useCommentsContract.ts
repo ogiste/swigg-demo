@@ -1,8 +1,9 @@
 import * as wagmi from "wagmi";
 import {useProvider, useSigner} from "wagmi";
 import type {BigNumber} from "ethers";
-
+import toast from "react-hot-toast";
 import CommentsContract from "../../artifacts/contracts/Comments.sol/Comments.json"
+import {useEffect, useState} from "react";
 
 export interface Comment {
   id: string;
@@ -16,16 +17,25 @@ export enum EventType {
   CommentAdded = "CommentAdded",
 }
 
+export interface UseCommentsContractResults{
+  contract: any;
+  chainId: number;
+  getComments: any;
+  addComment: any;
+  [key:string]: any;
+
+}
 
 // A hook that returns a contract facade for the Comments contract so we can write and read comments from the contract.
-const useCommentsContract = () => {
-
+// we call this in other hooks that access the comments e.g useComments, addComment
+const useCommentsContract = (): UseCommentsContractResults => {
   // An ethers.Signer instance associated with the signed-in wallet.
   // https://docs.ethers.io/v5/api/signer/
   const { data: signer, isError, isLoading } = useSigner();
   // An ethers.Provider instance. This will be the same provider that is
   // passed as a prop to the WagmiProvider.
   const provider = useProvider();
+  console.log(signer);
   // This returns a new ethers.Contract ready to interact with our comments API.
   // We need to pass in the address of our deployed contract as well as its abi.
   // We also pass in the signer if there is a signed in wallet, or if there's
@@ -51,9 +61,14 @@ const useCommentsContract = () => {
   // Wrapper to add types to our addComment function.
   const addComment = async (topic: string, message: string): Promise<void> => {
     // Create a new transaction
-    const tx = await contract.addComment(topic, message);
-    // Wait for transaction to be mined
-    await tx.wait();
+    if(signer !== null && signer !== undefined){
+      const tx = await contract.addComment(topic, message);
+      // Wait for transaction to be mined
+      await tx.wait();
+    } else {
+      toast.error("The address for signing could not be found and required to sign in <^-^>")
+    }
+
   };
 
   return {

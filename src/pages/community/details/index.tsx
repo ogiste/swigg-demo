@@ -8,10 +8,10 @@ import {
   Link,
   Stack,
   Text,
+  Image,
   useColorModeValue,
 } from '@chakra-ui/react';
-import Image from 'next/image';
-import nftCommunity from '../../../public/assets/images/nft-community-1.jpg';
+import nftCommunity from '../../../assets/images/nft-community-1.jpg';
 import {WagmiConfig as WagmiProvider} from "wagmi";
 import theme from "../../../theme";
 import {toast} from "react-hot-toast";

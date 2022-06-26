@@ -1,7 +1,5 @@
 import * as wagmi from "wagmi";
 import {useProvider, useSigner} from "wagmi";
-import type {BigNumber} from "ethers";
-
 import NftsContract from "../../artifacts/contracts/Nfts.sol/SwiggNFTMinterERC721Tester.json";
 const testMumbaiNFTContractAddress = '0x139e7Cbe6Fb49BD9edB0d741a900dE616D027FD0';
 
@@ -22,6 +20,7 @@ const useNftsContract  = () => {
   // Wrapper to add types to our addComment function.
   const mintNft = async (tokenURI: string): Promise<void> => {
     // Create a new transaction
+    console.log(tokenURI);
     const tx = await contract.mint(tokenURI);
     // Wait for transaction to be mined
     await tx.wait();
@@ -33,5 +32,8 @@ const useNftsContract  = () => {
     mintNft
   };
 };
+
+
+export default useNftsContract;
 
 

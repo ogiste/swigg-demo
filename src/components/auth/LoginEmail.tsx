@@ -30,8 +30,8 @@ export function EmailAuthForm() {
       bg={useColorModeValue('gray.50', 'gray.800')}>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
         <Stack align={'center'}>
-          <Heading align={'center'} justify={'center'} fontSize={'4xl'}>Sign in to your account</Heading>
-          <Text align={'center'} justify={'center'} fontSize={'lg'} color={'gray.600'}>
+          <Heading alignItems={'center'} justifyContent={'center'} fontSize={'4xl'}>Sign in to your account</Heading>
+          <Text alignItems={'center'} justifyContent={'center'} fontSize={'lg'} color={'gray.600'}>
             to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
           </Text>
         </Stack>
@@ -73,7 +73,8 @@ export function EmailAuthForm() {
   );
 }
 
-export default function LoginEmail({isOpen, onClose}) {
+export default function LoginEmail({isOpen, onClose, onOpen}) {
+  console.log(onOpen);
   return (
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay/>
