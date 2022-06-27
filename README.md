@@ -23,6 +23,8 @@ Swigg is an online platform that **facilitates access** to experiences and event
 - Email and 2FA security verification - **Optional** (6hrs)
 - Link your NFTs to your profile as cover photo options -  **Optional**
 
+
+[MVP Demo Link](https://swigg-38aa4.web.app)
 #### Compile smart contracts
 
 -- `npx hardhat compile`

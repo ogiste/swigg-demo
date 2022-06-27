@@ -21,7 +21,7 @@ export default function Hero() {
             fontWeight={700}
             lineHeight={1.2}
             fontSize={useBreakpointValue({ base: '3xl', md: '4xl' })}>
-            Mint an NFT in 3 easy steps.
+            Mint an NFT in 2 easy steps.
           </Text>
           <Stack direction={'row'}>
             <Button
