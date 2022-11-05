@@ -132,7 +132,7 @@ const MintPage = () => {
   return (
     <MainLayout>
       <MintForm formData={nftData} onInputChange={handleInputChange} onSubmitForm={handleSubmitForm}/>
-      ({isGenerated && <MetadataUpload onFileChange={handleFileChange} onSubmitMetadata={handleSubmitMetadata}/>} )
+      {isGenerated && <MetadataUpload onFileChange={handleFileChange} onSubmitMetadata={handleSubmitMetadata}/>}
       <Box p={8}
            maxW="600px"
            minW="320px"
