@@ -13,7 +13,6 @@ import CommentEditor from "../components/comments/CommentEditor";
 import Avatar from "@davatar/react";
 import Username from "../components/Username";
 import TimeAgo from "react-timeago";
-import {CreativeCoding} from "../components/creativeCoding/CreativeCoding";
 // import { wagmiClient, queryClient} from '../utils/auth.helpers';
 
 // const LandingPage = () => {
@@ -39,7 +38,6 @@ import {CreativeCoding} from "../components/creativeCoding/CreativeCoding";
 const LandingPage = () => {
   return (
     <MainLayout>
-      <CreativeCoding />
       <Hero/>
       <Box p={8} maxW="600px" minW="320px" m="0 auto">
         <Toaster position="bottom-right"/>
