@@ -2,8 +2,7 @@ import * as wagmi from "wagmi";
 import {useProvider, useSigner} from "wagmi";
 import type {BigNumber} from "ethers";
 import toast from "react-hot-toast";
-import CommentsContract from "../../artifacts/contracts/Comments.sol/Comments.json"
-import {useEffect, useState} from "react";
+import CommentsContract from "../../artifacts/src/contracts/Comments.sol/Comments.json"
 
 export interface Comment {
   id: string;

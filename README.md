@@ -25,11 +25,26 @@ Swigg is an online platform that **facilitates access** to experiences and event
 
 
 [MVP Demo Link](https://swigg-38aa4.web.app)
+
 #### Compile smart contracts
 
 -- `npx hardhat compile`
+
 #### Run local smart contract tests
+
 -- `npx hardhat test --show-stack-traces`
 
 #### Deploy on a Polygon
+
 -- `npx hardhat run --network matic scripts/deploy-and-seed.js --show-stack-traces`
+
+#### Easter Eggs
+
+For some fun creative coding experiments run:
+
+-- `git checkout cc-v2-animating-sonics-x-hues`
+
+-- `npx canvas-sketch-cli src/sketch-x.js`
+(where x = 03 or x = 04)
+
+e.g `npx canvas-sketch-cli src/sketch-04.js`

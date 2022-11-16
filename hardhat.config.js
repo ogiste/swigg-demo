@@ -6,7 +6,6 @@ require("@nomiclabs/hardhat-waffle");
 // https://hardhat.org/guides/create-task.html
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();
-
   for (const account of accounts) {
     console.log(account.address);
   }
