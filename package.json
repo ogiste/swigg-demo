@@ -23,6 +23,7 @@
     "firebase": "^9.13.0",
     "framer-motion": "^6.3.11",
     "glob": "^7.2.0",
+    "moment-timezone": "^0.5.39",
     "pubsub-js": "^1.9.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -38,6 +39,7 @@
     "tweakpane": "^3.1.0",
     "typescript": "^4.7.4",
     "uuid": "^8.3.2",
+    "uuidv4": "^6.2.13",
     "wagmi": "^0.4.12",
     "web-vitals": "^0.2.4"
   },

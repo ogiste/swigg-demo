@@ -10,7 +10,7 @@ import {wagmiClient, queryClient} from '../../utils/auth.helpers';
 const LoginPage = () => {
   return (
     <MainLayout>
-      <LoginForm/>)
+      <LoginForm/>
     </MainLayout>
   );
 

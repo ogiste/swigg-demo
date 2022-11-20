@@ -30,7 +30,11 @@ export default function LoginOptions(props: LoginOptionsProps) {
             <Text>Sign In with Metamask</Text>
           </Center>
         </Button>
-
+        <Button w={'full'} onClick={() => props.loginHandlers.handleGoogleSignIn()} leftIcon={<FcGoogle/>}>
+          <Center>
+            <Text>Sign In with Google</Text>
+          </Center>
+        </Button>
       </Stack>
     </Center>
   );

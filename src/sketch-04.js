@@ -14,6 +14,7 @@ const params = {
   animate: true,
   cols: 35,
   rows: 35,
+  ++++++++++++++++++++++++
   frameScale: 10,
   angleRange: 1.2,
   cellScale: 0.8,

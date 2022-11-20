@@ -1,6 +1,6 @@
 // noinspection TypeScriptUnresolvedVariable
 
-import {ReactNode} from 'react';
+import {ReactNode, useState} from 'react';
 import {
   Box,
   Flex,
@@ -20,8 +20,10 @@ import {
   Center, HStack, Code,
 } from '@chakra-ui/react';
 import {MoonIcon, SunIcon} from '@chakra-ui/icons';
-import {useAccount, useDisconnect} from "wagmi";
+import {useAccount, useConnect, useDisconnect} from "wagmi";
 import {CustomLink} from "../../utils/interfaces";
+import {useAuthContext} from "../../context/UserAuth";
+import {AUTH_TYPES} from "../../utils/constants";
 
 
 const NavLink = ({children, ...props}: { children: ReactNode, props?: any, [key: string]: any }) => (
@@ -39,7 +41,7 @@ const NavLink = ({children, ...props}: { children: ReactNode, props?: any, [key:
 );
 
 const createCustomLinks = (link: CustomLink) => {
-  if (link.handleClick) {
+  if (link?.handleClick) {
     return <MenuItem onClick={(e) => {
       e.preventDefault();
       console.log('handling click');
@@ -50,7 +52,7 @@ const createCustomLinks = (link: CustomLink) => {
 }
 
 const createMdCustomLinks = (link: CustomLink) => {
-  if (link.handleClick) {
+  if (link?.handleClick) {
     return <NavLink onClick={(e: any) => {
       e.preventDefault();
       console.log('handling click');
@@ -62,31 +64,38 @@ const createMdCustomLinks = (link: CustomLink) => {
 
 export default function Navbar(props) {
   const {colorMode, toggleColorMode} = useColorMode();
-  const {isOpen, onOpen, onClose} = useDisclosure();
-  const {data, isError, isLoading} = useAccount();
+  // const {isOpen, onOpen, onClose} = useDisclosure();
+  const {data} = useAccount();
+  const { isAuth, logout, authType, settings } = useAuthContext();
   const {disconnect} = useDisconnect();
-  const userWalletInfo = (data ?
+  const userWalletInfo = (isAuth && data?.address ?
     <Center><Code fontSize={'0.8rem'} maxWidth={'70%'}>{data.address}</Code></Center> : '');
   const Links: CustomLink[] = [];
   const guardedLinks: CustomLink[] = [
     {title: 'Create', href: '/mint'},
  ];
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    console.log('handling click');
+    disconnect();
+    logout()
+  }
+  let username
+
+  if(authType=== AUTH_TYPES.metamask){
+   username = settings.username? settings.username : settings.userWalletAddress
+  } else {
+    username = settings.username
+  }
   const guestLinkComponents = Links.map(createCustomLinks);
   const authLinkComponents = guardedLinks.map(createCustomLinks);
   const mdGuestLinkComponents = Links.map(createMdCustomLinks);
   const mdAuthLinkComponents = guardedLinks.map(createMdCustomLinks);
-  const relevantLinks = data ? authLinkComponents : guestLinkComponents;
-  const mdRelevantLinks = data ? mdAuthLinkComponents : mdGuestLinkComponents;
-  const authMenuLinks = data? <MenuItem onClick={(e) => {
-      e.preventDefault();
-      console.log('handling click');
-      disconnect();
-    }}>Logout</MenuItem> : <MenuItem as={Link} href='/auth/login'> Sign In</MenuItem>
-  const mdAuthMenuLinks = data? <NavLink onClick={(e) => {
-      e.preventDefault();
-      console.log('handling click');
-      disconnect();
-    }}>Logout</NavLink> : <NavLink as={Link} href='/auth/login'> Sign In</NavLink>
+  const relevantLinks = isAuth ? authLinkComponents : guestLinkComponents;
+  const mdRelevantLinks = isAuth ? mdAuthLinkComponents : mdGuestLinkComponents;
+  const authMenuLinks = isAuth ? <MenuItem onClick={handleLogout}>Logout</MenuItem> : <MenuItem as={Link} href='/auth/login'> Sign In</MenuItem>
+  const mdAuthMenuLinks = isAuth ? <Button onClick={handleLogout}>Logout</Button> : <NavLink as={Link} href='/auth/login'> Sign In</NavLink>
   return (
     <>
       <Box zIndex={10000} bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
@@ -128,7 +137,7 @@ export default function Navbar(props) {
                   </Center>
                   <br/>
                   <Center>
-                    <Box>Username</Box>
+                    <Box>{username}</Box>
                   </Center>
                   {userWalletInfo}
                   <br/>

@@ -74,7 +74,6 @@ export function EmailAuthForm() {
 }
 
 export default function LoginEmail({isOpen, onClose, onOpen}) {
-  console.log(onOpen);
   return (
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay/>
