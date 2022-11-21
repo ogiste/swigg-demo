@@ -80,6 +80,7 @@
     "ethereum-waffle": "^3.4.4",
     "ethers": "^5.7.2",
     "hardhat": "^2.12.2",
+    "prettier": "^2.7.1",
     "ts-node": "^10.9.1",
     "zksync-web3": "^0.11.1"
   }

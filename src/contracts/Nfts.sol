@@ -25,7 +25,7 @@ contract MintMaster is ERC721, AccessControl, ERC721Burnable, CantBeEvil(License
     function supportsInterface(bytes4 interfaceId)
     public
     view
-    override(ERC721, AccessControl)
+    override(ERC721, AccessControl, CantBeEvil)
     returns (bool)
     {
         return super.supportsInterface(interfaceId);
