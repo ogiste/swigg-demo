@@ -1,14 +1,14 @@
 // Import this to use the hardhat version of ethers
 import "@nomiclabs/hardhat-ethers";
 // import "@nomiclabs/hardhat-waffle";
-import { expect } from "chai";
-import { ethers } from "hardhat";
+import {expect} from "chai";
+import {ethers} from "hardhat";
 // eslint-disable-next-line node/no-missing-import
-import { MintMaster, MintMasterCoin, ProjectCreator } from "../typechain";
+import {MintMaster, MintMasterCoin, ProjectCreator} from "../typechain";
 // eslint-disable-next-line node/no-unpublished-import
-import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/signers";
+import {SignerWithAddress} from "@nomiclabs/hardhat-ethers/signers";
 // eslint-disable-next-line node/no-unpublished-import
-import { BigNumber } from "ethers";
+import {BigNumber} from "ethers";
 
 const DEFAULT_PURCHASE_RATIO = 100;
 const DEFAULT_MINT_PRICE = 0.3333333333333333;
@@ -22,25 +22,30 @@ describe("NFT Shop", async () => {
   beforeEach(async () => {
     accounts = await ethers.getSigners();
     const [tokenContractFactory, nftContractFactory, shopContractFactory] =
-      await Promise.all([
-        ethers.getContractFactory("MintMasterCoin"),
-        ethers.getContractFactory("MintMaster"),
-        ethers.getContractFactory("ProjectCreator"),
-      ]);
+        await Promise.all([
+          ethers.getContractFactory("MintMasterCoin"),
+          ethers.getContractFactory("MintMaster"),
+          ethers.getContractFactory("ProjectCreator"),
+        ]);
+    // @ts-ignore
     tokenContract = await tokenContractFactory.deploy();
     await tokenContract.deployed();
+
+    // @ts-ignore
     nftContract = await nftContractFactory.deploy();
     await nftContract.deployed();
+
+    // @ts-ignore
     projectCreator = await shopContractFactory.deploy(
-      DEFAULT_PURCHASE_RATIO,
-      ethers.utils.parseEther(DEFAULT_MINT_PRICE.toFixed(18)),
-      tokenContract.address,
-      nftContract.address
+        DEFAULT_PURCHASE_RATIO,
+        ethers.utils.parseEther(DEFAULT_MINT_PRICE.toFixed(18)),
+        tokenContract.address,
+        nftContract.address
     );
     await projectCreator.deployed();
     const minterRole = await tokenContract.MINTER_ROLE();
     const minterRoleTx = await tokenContract.grantRole(
-      minterRole,
+        minterRole,
       projectCreator.address
     );
     await minterRoleTx.wait();
