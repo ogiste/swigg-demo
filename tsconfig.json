@@ -23,6 +23,8 @@
     "incremental": true
   },
   "include": [
-    "src"
+    "src",
+    "./test",
+    "./scripts"
   ]
 }
