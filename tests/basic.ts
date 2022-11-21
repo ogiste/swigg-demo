@@ -1,8 +1,9 @@
 // Import this to use the hardhat version of ethers
-import "@nomiclabs/hardhat-ethers";
-// import "@nomiclabs/hardhat-waffle";
+// import 'mocha';
 import {expect} from "chai";
 import {ethers} from "hardhat";
+import "@nomiclabs/hardhat-ethers";
+// import "@nomiclabs/hardhat-waffle";
 // eslint-disable-next-line node/no-missing-import
 import {MintMaster, MintMasterCoin, ProjectCreator} from "../typechain";
 // eslint-disable-next-line node/no-unpublished-import
@@ -46,7 +47,7 @@ describe("NFT Shop", async () => {
     const minterRole = await tokenContract.MINTER_ROLE();
     const minterRoleTx = await tokenContract.grantRole(
         minterRole,
-      projectCreator.address
+        projectCreator.address
     );
     await minterRoleTx.wait();
     const nftMinterRole = await nftContract.MINTER_ROLE();
