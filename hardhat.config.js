@@ -21,12 +21,17 @@ module.exports = {
     solidity: "0.8.4",
     networks: {
         hardhat: {
-            chainId: 1337,
+            chainId: 1337
         },
         matic: {
             url: "https://matic-mumbai.chainstacklabs.com",
-            accounts: [process.env.MUMBAI_KEY],
+            accounts: [process.env.MUMBAI_KEY]
         },
+        metis: {
+            url: "https://goerli.gateway.metisdevops.link",
+            accounts:
+                process.env.PRIV_KEY !== undefined ? [process.env.PRIV_KEY] : []
+        }
     },
     paths: {
         sources: "./src/contracts",
