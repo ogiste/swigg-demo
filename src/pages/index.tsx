@@ -28,9 +28,6 @@ import MainLayout from "../components/layout/MainLayout";
 const LandingPage = () => {
   return (
       <MainLayout>
-        <h1 className="text-3xl font-bold underline">
-          Hello world!
-        </h1>
         <Hero/>
         <Box p={8} maxW="600px" minW="320px" m="0 auto">
           <Toaster position="bottom-right"/>
