@@ -1,18 +1,8 @@
-
 import * as React from "react";
-import {Box, Center, Heading, HStack, Link, Spinner, Stack, Text} from "@chakra-ui/react";
-import {toast, Toaster} from "react-hot-toast";
-import Comments from "../components/comments/Comments";
+import {Box} from "@chakra-ui/react";
+import {Toaster} from "react-hot-toast";
 import Hero from "../components/hero/Hero";
 import MainLayout from "../components/layout/MainLayout";
-import {useQuery} from "react-query";
-import {useState} from "react";
-import useCommentsContract from "../hooks/comments/useCommentsContract";
-import SingleComment from "../components/comments/SingleComment";
-import CommentEditor from "../components/comments/CommentEditor";
-import Avatar from "@davatar/react";
-import Username from "../components/Username";
-import TimeAgo from "react-timeago";
 // import { wagmiClient, queryClient} from '../utils/auth.helpers';
 
 // const LandingPage = () => {
@@ -37,12 +27,15 @@ import TimeAgo from "react-timeago";
 
 const LandingPage = () => {
   return (
-    <MainLayout>
-      <Hero/>
-      <Box p={8} maxW="600px" minW="320px" m="0 auto">
-        <Toaster position="bottom-right"/>
-      </Box>
-    </MainLayout>
+      <MainLayout>
+        <h1 className="text-3xl font-bold underline">
+          Hello world!
+        </h1>
+        <Hero/>
+        <Box p={8} maxW="600px" minW="320px" m="0 auto">
+          <Toaster position="bottom-right"/>
+        </Box>
+      </MainLayout>
 
   );
 };

@@ -23,6 +23,7 @@
     "canvas-sketch-util": "^1.10.0",
     "chai": "^4.3.7",
     "firebase": "^9.13.0",
+    "formik": "^2.2.9",
     "framer-motion": "^6.3.11",
     "glob": "^7.2.0",
     "hardhat": "^2.12.2",
@@ -30,6 +31,7 @@
     "pubsub-js": "^1.9.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-hot-toast": "^2.2.0",
     "react-icons": "^3.11.0",
     "react-query": "^4.0.0-beta.23",
@@ -44,7 +46,8 @@
     "uuid": "^8.3.2",
     "uuidv4": "^6.2.13",
     "wagmi": "^0.4.12",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "GENERATE_SOURCEMAP=false react-scripts start",

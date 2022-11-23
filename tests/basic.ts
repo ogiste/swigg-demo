@@ -13,6 +13,9 @@ import {BigNumber} from "ethers";
 
 const DEFAULT_PURCHASE_RATIO = 100;
 const DEFAULT_MINT_PRICE = 0.3333333333333333;
+const tokenName = 'MintMasterCoin'
+const nftName = 'MintMaster'
+const projectContractName = 'ProjectCreator'
 
 describe("NFT Shop", async () => {
   let tokenContract: MintMasterCoin;
@@ -24,9 +27,9 @@ describe("NFT Shop", async () => {
     accounts = await ethers.getSigners();
     const [tokenContractFactory, nftContractFactory, shopContractFactory] =
         await Promise.all([
-          ethers.getContractFactory("MintMasterCoin"),
-          ethers.getContractFactory("MintMaster"),
-          ethers.getContractFactory("ProjectCreator"),
+          ethers.getContractFactory(tokenName),
+          ethers.getContractFactory(nftName),
+          ethers.getContractFactory(projectContractName),
         ]);
     // @ts-ignore
     tokenContract = await tokenContractFactory.deploy();
@@ -73,9 +76,9 @@ describe("NFT Shop", async () => {
 
     it("uses a valid ERC20 as payment token", async () => {
       const tokenContractAddress = await projectCreator.paymentToken();
-      const tokenContractFactory = await ethers.getContractFactory("MyToken");
+      const tokenContractFactory = await ethers.getContractFactory(tokenName);
       const paymentTokenContract =
-        tokenContractFactory.attach(tokenContractAddress);
+          tokenContractFactory.attach(tokenContractAddress);
       const [paymentTokenName, paymentTokenSymbol, paymentTokenSupply] =
         await Promise.all([
           paymentTokenContract.name(),
@@ -89,9 +92,9 @@ describe("NFT Shop", async () => {
 
     it("uses a valid ERC721 as NFT Collection", async () => {
       const nftontractAddress = await projectCreator.paymentToken();
-      const nftContractFactory = await ethers.getContractFactory("MyNFT");
+      const nftContractFactory = await ethers.getContractFactory(nftName);
       const nftCollectionContract =
-        nftContractFactory.attach(nftontractAddress);
+          nftContractFactory.attach(nftontractAddress);
       const [nftCollectionName, nftCollectionSymbol] = await Promise.all([
         nftCollectionContract.name(),
         nftCollectionContract.symbol(),
@@ -387,7 +390,7 @@ describe("Comments", function () {
 
 describe("NFT Minter", function () {
   it("Should add and fetch successfully", async function () {
-    const NFTMinter = await ethers.getContractFactory("MintMaster");
+    const NFTMinter = await ethers.getContractFactory(nftName);
     const nftMinter = await NFTMinter.deploy();
     await nftMinter.deployed();
 
