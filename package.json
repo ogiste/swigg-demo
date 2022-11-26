@@ -19,6 +19,7 @@
     "@types/react-dom": "^18.0.5",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^0.27.2",
+    "bootstrap": "^5.2.3",
     "canvas-sketch": "^0.7.6",
     "canvas-sketch-util": "^1.10.0",
     "chai": "^4.3.7",
@@ -30,6 +31,7 @@
     "moment-timezone": "^0.5.39",
     "pubsub-js": "^1.9.4",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.6.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-hot-toast": "^2.2.0",
@@ -47,7 +49,9 @@
     "uuidv4": "^6.2.13",
     "wagmi": "^0.4.12",
     "web-vitals": "^0.2.4",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "@react-buddy/ide-toolbox": "^2.3.0",
+    "@react-buddy/palette-chakra-ui": "^2.2.0"
   },
   "scripts": {
     "start": "GENERATE_SOURCEMAP=false react-scripts start",

@@ -12,6 +12,8 @@ import Comments from "./components/comments/Comments";
 import MintPage from "./pages/nfts/mint";
 import CommunityList from "./pages/community";
 import {UserAuthProvider} from "./context/UserAuth";
+import EditAudio from "./pages/audio/Edit/Edit";
+import AudioList from "./pages/audio";
 
 export const App = () => {
   console.log("queryClient", queryClient);
@@ -27,6 +29,8 @@ export const App = () => {
                   <Route path="/" element={<LandingPage/>}/>
                   <Route path="/auth/login" element={<LoginPage/>}/>
                   <Route path="/mint" element={<MintPage/>}/>
+                  <Route path="/audio/edit" element={<EditAudio/>}/>
+                  <Route path="/explore" element={<AudioList/>}/>
                   <Route
                       path="/forum"
                       element={<Comments topic="my-mint-post"/>}

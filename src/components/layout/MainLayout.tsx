@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from '../navbar/Narbar';
+import Navbar from '../navbar/Navbar';
 import Footer from '../footer/Footer';
 import "@fontsource/poppins";
 import {Toaster} from "react-hot-toast";
