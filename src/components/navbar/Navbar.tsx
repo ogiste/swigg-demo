@@ -29,7 +29,7 @@ import {CustomLink} from "../../utils/interfaces";
 import {useAuthContext} from "../../context/UserAuth";
 import {AUTH_TYPES} from "../../utils/constants";
 import {SidebarContent} from "../sidebar/Sidebar";
-import {FiMenu, FiX} from "react-icons/fi";
+import {FiCompass, FiHome, FiMenu, FiSettings, FiStar, FiTrendingUp, FiX} from "react-icons/fi";
 
 const NavLink = ({
                    children,
@@ -100,18 +100,25 @@ export default function Navbar(props) {
   const {disconnect} = useDisconnect();
   const userWalletInfo =
       isAuth && data?.address ? (
-          <Center>
-            <Code fontSize={"0.8rem"} maxWidth={"70%"}>
-              {data.address}
-            </Code>
-          </Center>
+        <Center>
+          <Code fontSize={"0.8rem"} maxWidth={"70%"}>
+            {data.address}
+          </Code>
+        </Center>
       ) : (
-          ""
+        ""
       );
   const Links: CustomLink[] = [];
   const guardedLinks: CustomLink[] = [
-    {title: "Create", href: "/mint"},
-    {title: "Explore", href: "/explore"},
+    {title: "Home", href: '/', icon: FiHome},
+    {title: "Explore", href: "/explore", icon: FiCompass},
+    {title: "Trending", href: "/explore", icon: FiTrendingUp},
+  ];
+  const profileLinks: CustomLink[] = [
+    {title: "Home", href: '/', icon: FiHome},
+    {title: "Create", href: "/mint", icon: FiStar},
+    {title: "Favourites", href: "/", icon: FiStar},
+    {title: "Settings", href: "/explore", icon: FiSettings},
   ];
 
   const handleLogout = (e) => {
@@ -131,9 +138,11 @@ export default function Navbar(props) {
   }
   const guestLinkComponents = Links.map(createCustomLinks);
   const authLinkComponents = guardedLinks.map(createCustomLinks);
+  const profileLinkComponents = profileLinks.map(createCustomLinks);
   const mdGuestLinkComponents = Links.map(createMdCustomLinks);
   const mdAuthLinkComponents = guardedLinks.map(createMdCustomLinks);
   const relevantLinks = isAuth ? authLinkComponents : guestLinkComponents;
+  const profileRelevantLinks = isAuth ? profileLinkComponents : guestLinkComponents;
   const mdRelevantLinks = isAuth ? mdAuthLinkComponents : mdGuestLinkComponents;
   const authMenuLinks = isAuth ? (
       <MenuItem onClick={handleLogout}>Logout</MenuItem>
@@ -187,7 +196,7 @@ export default function Navbar(props) {
                   onOverlayClick={onClose}
               >
                 <DrawerContent>
-                  <SidebarContent onClose={onClose}/>
+                  <SidebarContent navLinks={isAuth ? guardedLinks : []} onClose={onClose}/>
                 </DrawerContent>
               </Drawer>
               <HStack
@@ -222,8 +231,8 @@ export default function Navbar(props) {
                     <br/>
                     <Center>
                       <Avatar
-                          size={"2xl"}
-                          src={"https://avatars.dicebear.com/api/male/username.svg"}
+                        size={"2xl"}
+                        src={"https://avatars.dicebear.com/api/male/username.svg"}
                       />
                     </Center>
                     <br/>
@@ -233,11 +242,10 @@ export default function Navbar(props) {
                     {userWalletInfo}
                     <br/>
                     <MenuDivider/>
-                    <MenuItem as={Link} href={"/"}>
-                      Home
-                    </MenuItem>
-                    {relevantLinks}
-                    {authMenuLinks}
+                    {/*<MenuItem as={Link} href={"/"}>*/}
+                    {/*  Home*/}
+                    {/*</MenuItem>*/}
+                    {profileRelevantLinks}
                   </MenuList>
                 </Menu>
               </Stack>
