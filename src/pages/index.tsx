@@ -1,8 +1,10 @@
 import * as React from "react";
+import {useState} from "react";
 import {Box} from "@chakra-ui/react";
 import {Toaster} from "react-hot-toast";
 import Hero from "../components/hero/Hero";
 import MainLayout from "../components/layout/MainLayout";
+import Canvas from "../components/canvas/Canvas";
 // import { wagmiClient, queryClient} from '../utils/auth.helpers';
 
 // const LandingPage = () => {
@@ -26,8 +28,11 @@ import MainLayout from "../components/layout/MainLayout";
 // };
 
 const LandingPage = () => {
+  const margin = 30
+  const [dims, setDims] = useState({h: window.innerHeight - margin, w: window.innerWidth - margin})
   return (
       <MainLayout>
+        <Canvas w={dims.w} h={dims.h}/>
         <Hero/>
         <Box p={8} maxW="600px" minW="320px" m="0 auto">
           <Toaster position="bottom-right"/>

@@ -1,4 +1,8 @@
-
 .heroBg {
+    position: relative;
+}
+
+.heroBg:before {
     background-image: url('../../assets/images/nft-community-5.jpg');
+    opacity: 0.1;
 }

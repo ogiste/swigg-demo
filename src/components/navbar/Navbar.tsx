@@ -29,7 +29,7 @@ import {CustomLink} from "../../utils/interfaces";
 import {useAuthContext} from "../../context/UserAuth";
 import {AUTH_TYPES} from "../../utils/constants";
 import {SidebarContent} from "../sidebar/Sidebar";
-import {FiCompass, FiHome, FiMenu, FiSettings, FiStar, FiTrendingUp, FiX} from "react-icons/fi";
+import {FiCompass, FiHome, FiMenu, FiSettings, FiStar, FiTrendingUp, FiX,} from "react-icons/fi";
 
 const NavLink = ({
                    children,
@@ -100,22 +100,22 @@ export default function Navbar(props) {
   const {disconnect} = useDisconnect();
   const userWalletInfo =
       isAuth && data?.address ? (
-        <Center>
-          <Code fontSize={"0.8rem"} maxWidth={"70%"}>
-            {data.address}
-          </Code>
-        </Center>
+          <Center>
+            <Code fontSize={"0.8rem"} maxWidth={"70%"}>
+              {data.address}
+            </Code>
+          </Center>
       ) : (
-        ""
+          ""
       );
   const Links: CustomLink[] = [];
   const guardedLinks: CustomLink[] = [
-    {title: "Home", href: '/', icon: FiHome},
+    {title: "Home", href: "/", icon: FiHome},
     {title: "Explore", href: "/explore", icon: FiCompass},
     {title: "Trending", href: "/explore", icon: FiTrendingUp},
   ];
   const profileLinks: CustomLink[] = [
-    {title: "Home", href: '/', icon: FiHome},
+    {title: "Home", href: "/", icon: FiHome},
     {title: "Create", href: "/mint", icon: FiStar},
     {title: "Favourites", href: "/", icon: FiStar},
     {title: "Settings", href: "/explore", icon: FiSettings},
@@ -142,7 +142,9 @@ export default function Navbar(props) {
   const mdGuestLinkComponents = Links.map(createMdCustomLinks);
   const mdAuthLinkComponents = guardedLinks.map(createMdCustomLinks);
   const relevantLinks = isAuth ? authLinkComponents : guestLinkComponents;
-  const profileRelevantLinks = isAuth ? profileLinkComponents : guestLinkComponents;
+  const profileRelevantLinks = isAuth
+      ? profileLinkComponents
+      : guestLinkComponents;
   const mdRelevantLinks = isAuth ? mdAuthLinkComponents : mdGuestLinkComponents;
   const authMenuLinks = isAuth ? (
       <MenuItem onClick={handleLogout}>Logout</MenuItem>
@@ -169,21 +171,30 @@ export default function Navbar(props) {
             bg={useColorModeValue("gray.100", "gray.900")}
             px={4}
         >
-          <Flex h={16} w={'100%'} alignItems={"center"} justifyContent={"space-between"}>
+          <Flex
+              h={16}
+              w={"100%"}
+              alignItems={"center"}
+              justifyContent={"space-between"}
+          >
             <HStack spacing={8} alignItems={"center"}>
-              {!isOpen ? <IconButton
-                  display={{base: "flex"}}
-                  onClick={onOpen}
-                  variant="outline"
-                  aria-label="open menu"
-                  icon={<FiMenu/>}
-              /> : <IconButton
-                  display={{base: "flex"}}
-                  onClick={onClose}
-                  variant="outline"
-                  aria-label="open menu"
-                  icon={<FiX/>}
-              />}
+              {!isOpen ? (
+                  <IconButton
+                      display={{base: "flex"}}
+                      onClick={onOpen}
+                      variant="outline"
+                      aria-label="open menu"
+                      icon={<FiMenu/>}
+                  />
+              ) : (
+                  <IconButton
+                      display={{base: "flex"}}
+                      onClick={onClose}
+                      variant="outline"
+                      aria-label="open menu"
+                      icon={<FiX/>}
+                  />
+              )}
               <Box>
                 <Link href={"/"}> Karibuu </Link>
               </Box>
@@ -196,7 +207,10 @@ export default function Navbar(props) {
                   onOverlayClick={onClose}
               >
                 <DrawerContent>
-                  <SidebarContent navLinks={isAuth ? guardedLinks : []} onClose={onClose}/>
+                  <SidebarContent
+                      navLinks={isAuth ? guardedLinks : []}
+                      onClose={onClose}
+                  />
                 </DrawerContent>
               </Drawer>
               <HStack
@@ -231,8 +245,8 @@ export default function Navbar(props) {
                     <br/>
                     <Center>
                       <Avatar
-                        size={"2xl"}
-                        src={"https://avatars.dicebear.com/api/male/username.svg"}
+                          size={"2xl"}
+                          src={"https://avatars.dicebear.com/api/male/username.svg"}
                       />
                     </Center>
                     <br/>
